@@ -1,5 +1,7 @@
 # https://dasboarrd.tiiny.site/
 
+blissful-ramanujan-16f32f.netlify.app
+
 asp.net core web application
 
 i applied for mobile but due to the fact that xamarin was not included I decided to use .net core to build the app up to this extent
