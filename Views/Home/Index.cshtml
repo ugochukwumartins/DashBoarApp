@@ -23,24 +23,26 @@
                          
                     </div>
                     <div><span id="user">Show Users</span>/></div>
-                    <div class="btn-group icons">
-                        <div>
-                            <button class="btn0" asp-action="Index" asp-controller="Home"><i class="fas fa-users fa-3x icons"></i></button>
-                            <p class="btntext">All Users</p>
-                        </div>
-                        <div>
-                            <button class="btn1"><i class="fas fa-male fa-3x icons"></i></button>
-                            <p class="btntext">Male Users</p>
-                        </div>
-                        <div>
-                            <button class="btn2"><i class="fas fa-female fa-3x icons"></i></button>
-                            <p class="btntext">Female Users</p>
-                        </div>
-                        
-                        
-                       
+                    <form>
+                        <div class="btn-group icons outline">
+                            <div class="outline">
+                                <button class="btn0" asp-action="AllDataBy" asp-controller="Home" name="button" value="All"><i class="fas fa-users fa-3x icons"></i></button>
+                                <p class="btntext">All Users</p>
+                            </div>
+                            <div class="outline">
+                                <button class="btn1" name="button" value="Male" asp-action="AllDataBy" asp-controller="Home"><i class="fas fa-male fa-3x icons"></i></button>
+                                <p class="btntext">Male Users</p>
+                            </div>
+                            <div class="outline">
+                                <button class="btn2" name="button" value="Female" asp-action="AllDataBy" asp-controller="Home"><i class="fas fa-female fa-3x icons"></i></button>
+                                <p class="btntext">Female Users</p>
+                            </div>
 
-                    </div>
+
+
+
+                        </div>
+                    </form>
                 </div>
               
             </div>
@@ -50,7 +52,7 @@
                     <div class="flows">
 
                     
-                    <div class="text1">All User</div>
+                    <div class="text1"> @TempData["buttonval"]</div>
                     <div class="text2">Filter by</div>
                     <div class="btn-group">
                         <div class="input-icons">

@@ -22,16 +22,55 @@ namespace Dashboard.Controllers
             _logger = logger;
         } 
         [HttpGet]
-        public async Task<IEnumerable<DashBoardModel>> GetallData(string Gender)
+        public IActionResult AllDataBy(string button)
         {
-            dashBoardModels = LoadDashBoardData.GetDashbordByResult().Result.ToList();
-            return dashBoardModels.Where(gen=> gen.gender==Gender);
+            try
+            {
+                if (button == "All")
+                {
+                    TempData["buttonval"] = "ALL USERS";
+                     dashBoardModels = LoadDashBoardData.GetDashbordByResult().Result.ToList();
+                    // var Data = dashBoardModels.Where(gen => gen.gender == button);
+                }
+                else if (button == "Male")
+                {
+                    TempData["buttonval"] = "Male USERS";
+                     dashBoardModels = LoadDashBoardData.GetDataByGenderFemale().Result.ToList();
+                   
+                }
+                else
+                {
+                    TempData["buttonval"] = "Female USERS";
+                    dashBoardModels = LoadDashBoardData.GetDataByGenderFemale().Result.ToList();
+
+
+                }
+                // dashBoardModels = LoadDashBoardData.GetDashbordByResult().Result.ToList();
+                // var Data = dashBoardModels.Where(gen => gen.gender == button);
+                return RedirectToAction("Index");
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+           
         }
         public IActionResult Index()
         {
-            dashBoardModels = LoadDashBoardData.GetDashbordByResult().Result.ToList();
-          
-            return View(dashBoardModels);
+            try
+            {
+               
+                dashBoardModels = LoadDashBoardData.GetDashbordByResult().Result.ToList();
+
+                return View(dashBoardModels);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+           
         }
 
         public IActionResult Privacy()

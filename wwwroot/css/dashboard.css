@@ -82,7 +82,9 @@ input {
     opacity: 1;
     height: 110px;
     width: 120px;
-    margin-right:15px;
+    margin-right: 15px;
+    border: 0;
+    outline: none;
 }
 .btn1 {
     background: #30BBB5 0% 0% no-repeat padding-box;
@@ -91,6 +93,8 @@ input {
     height: 110px;
     width: 120px;
     margin-right: 15px;
+    border: 0;
+    outline: none;
 }
 .btn2 {
     background: #7946C1 0% 0% no-repeat padding-box;
@@ -98,6 +102,8 @@ input {
     opacity: 1;
     height:110px;
     width:120px;
+    border:0;
+    outline:none;
 }
 .btntext {
     text-align: left;
@@ -352,6 +358,9 @@ input:checked + .slider:before {
     letter-spacing: -0.42px;
     color: #000000;
     opacity: 0.62;*/
+}
+.outline{
+    outline:none;
 }
 
 /*input:checked:before {

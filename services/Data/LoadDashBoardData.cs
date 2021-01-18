@@ -28,9 +28,31 @@ namespace Dashboard.services.Data
             catch (Exception e) { throw e; }
         }
 
-        public Task<List<DashBoardModel>> GetDataByGender()
+        public static async Task<List<DashBoardModel>> GetDataByGenderMale()
         {
-            throw new NotImplementedException();
+            try
+            {
+                var restClient = new DashBoardLoadServiceData<BaseResultModel<DashBoardModel>>();
+                var PendingLoan = await restClient.GetMyDataByGenderMale();
+
+
+                List<DashBoardModel> content = PendingLoan?.Results;
+                return content;
+            }
+            catch (Exception e) { throw e; }
+        }
+        public static async Task<List<DashBoardModel>> GetDataByGenderFemale()
+        {
+            try
+            {
+                var restClient = new DashBoardLoadServiceData<BaseResultModel<DashBoardModel>>();
+                var PendingLoan = await restClient.GetMyDataByGenderFemale();
+
+
+                List<DashBoardModel> content = PendingLoan?.Results;
+                return content;
+            }
+            catch (Exception e) { throw e; }
         }
     }
 }

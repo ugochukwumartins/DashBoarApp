@@ -21,5 +21,34 @@ namespace Dashboard.services
                 throw e;
             }
         }
+
+        public async Task<T> GetMyDataByGenderMale()
+        {
+            string genders = "&?gender=female";
+            string url = baseUrl.Geturl+genders;
+
+            try
+            {
+                return await GenericGet(url);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+        public async Task<T> GetMyDataByGenderFemale()
+        {
+            string genders = "&?gender=male";
+            string url = baseUrl.Geturl + genders;
+
+            try
+            {
+                return await GenericGet(url);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
     }
 }
