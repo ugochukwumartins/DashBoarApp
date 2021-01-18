@@ -24,8 +24,8 @@ namespace Dashboard.services
 
         public async Task<T> GetMyDataByGenderMale()
         {
-            string genders = "&?gender=female";
-            string url = baseUrl.Geturl+genders;
+            
+            string url = baseUrl.GeturlMale;
 
             try
             {
@@ -38,8 +38,8 @@ namespace Dashboard.services
         }
         public async Task<T> GetMyDataByGenderFemale()
         {
-            string genders = "&?gender=male";
-            string url = baseUrl.Geturl + genders;
+          
+            string url = baseUrl.GeturlFemale;
 
             try
             {

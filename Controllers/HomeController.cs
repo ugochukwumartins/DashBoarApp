@@ -22,55 +22,80 @@ namespace Dashboard.Controllers
             _logger = logger;
         } 
         [HttpGet]
-        public IActionResult AllDataBy(string button)
+        //public IActionResult AllDataBy(string button)
+        //{
+        //    try
+        //    {
+        //        if (button == "All")
+        //        {
+        //            TempData["buttonval"] = "ALL USERS";
+        //             dashBoardModels = LoadDashBoardData.GetDashbordByResult().Result.ToList();
+        //            // var Data = dashBoardModels.Where(gen => gen.gender == button);
+        //            return RedirectToAction("Index", dashBoardModels);
+        //        }
+        //        else if (button == "Male")
+        //        {
+        //            TempData["buttonval"] = "Male USERS";
+        //             dashBoardModels = LoadDashBoardData.GetDataByGenderMale().Result.ToList();
+        //            return RedirectToAction("Index", dashBoardModels);
+
+        //        }
+        //        else
+        //        {
+        //            TempData["buttonval"] = "Female USERS";
+        //            dashBoardModels = LoadDashBoardData.GetDataByGenderFemale().Result.ToList();
+        //            return RedirectToAction("Index", dashBoardModels);
+
+        //        }
+        //        // dashBoardModels = LoadDashBoardData.GetDashbordByResult().Result.ToList();
+        //        // var Data = dashBoardModels.Where(gen => gen.gender == button);
+        //        //return RedirectToAction("Index", dashBoardModels);
+        //    }
+        //    catch (Exception)
+        //    {
+
+        //        throw;
+        //    }
+           
+        //}
+        public IActionResult Index(string button)
         {
             try
             {
                 if (button == "All")
                 {
                     TempData["buttonval"] = "ALL USERS";
-                     dashBoardModels = LoadDashBoardData.GetDashbordByResult().Result.ToList();
+                    dashBoardModels = LoadDashBoardData.GetDashbordByResult().Result.ToList();
                     // var Data = dashBoardModels.Where(gen => gen.gender == button);
+                    return View(dashBoardModels);
                 }
                 else if (button == "Male")
                 {
                     TempData["buttonval"] = "Male USERS";
-                     dashBoardModels = LoadDashBoardData.GetDataByGenderMale().Result.ToList();
-                   
+                    dashBoardModels = LoadDashBoardData.GetDataByGenderMale().Result.ToList();
+                    return View(dashBoardModels);
+
                 }
-                else
+                else if(button == "Female")
                 {
                     TempData["buttonval"] = "Female USERS";
                     dashBoardModels = LoadDashBoardData.GetDataByGenderFemale().Result.ToList();
-
+                    return View(dashBoardModels);
 
                 }
-                // dashBoardModels = LoadDashBoardData.GetDashbordByResult().Result.ToList();
-                // var Data = dashBoardModels.Where(gen => gen.gender == button);
-                return RedirectToAction("Index");
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-           
-        }
-        public IActionResult Index()
-        {
-            try
-            {
-               
+                TempData["buttonval"] = "ALL USERS";
                 dashBoardModels = LoadDashBoardData.GetDashbordByResult().Result.ToList();
-
                 return View(dashBoardModels);
+                // var Data = dashBoardModels.Where(gen => gen.gender == button);
+                //return RedirectToAction("Index", dashBoardModels);
             }
             catch (Exception)
             {
 
                 throw;
             }
-           
+
+
         }
 
         public IActionResult Privacy()
