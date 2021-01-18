@@ -35,7 +35,7 @@ namespace Dashboard.Controllers
                 else if (button == "Male")
                 {
                     TempData["buttonval"] = "Male USERS";
-                     dashBoardModels = LoadDashBoardData.GetDataByGenderFemale().Result.ToList();
+                     dashBoardModels = LoadDashBoardData.GetDataByGenderMale().Result.ToList();
                    
                 }
                 else
