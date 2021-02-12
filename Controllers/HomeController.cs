@@ -1,4 +1,6 @@
 ﻿using Dashboard.Models;
+using Dashboard.Models.Dashbord;
+using Dashboard.Pagination;
 using Dashboard.services.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -15,50 +17,15 @@ namespace Dashboard.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         // private readonly ILoadDashBoardData _loadDasBoard;
-      public  IEnumerable<DashBoardModel> dashBoardModels;
+        public IEnumerable<DashBoardModel> dashBoardModels;
+        ViewModel ViewModels = new ViewModel();
         public HomeController(ILogger<HomeController> logger)
         {
-            
+
             _logger = logger;
-        } 
-        [HttpGet]
-        //public IActionResult AllDataBy(string button)
-        //{
-        //    try
-        //    {
-        //        if (button == "All")
-        //        {
-        //            TempData["buttonval"] = "ALL USERS";
-        //             dashBoardModels = LoadDashBoardData.GetDashbordByResult().Result.ToList();
-        //            // var Data = dashBoardModels.Where(gen => gen.gender == button);
-        //            return RedirectToAction("Index", dashBoardModels);
-        //        }
-        //        else if (button == "Male")
-        //        {
-        //            TempData["buttonval"] = "Male USERS";
-        //             dashBoardModels = LoadDashBoardData.GetDataByGenderMale().Result.ToList();
-        //            return RedirectToAction("Index", dashBoardModels);
-
-        //        }
-        //        else
-        //        {
-        //            TempData["buttonval"] = "Female USERS";
-        //            dashBoardModels = LoadDashBoardData.GetDataByGenderFemale().Result.ToList();
-        //            return RedirectToAction("Index", dashBoardModels);
-
-        //        }
-        //        // dashBoardModels = LoadDashBoardData.GetDashbordByResult().Result.ToList();
-        //        // var Data = dashBoardModels.Where(gen => gen.gender == button);
-        //        //return RedirectToAction("Index", dashBoardModels);
-        //    }
-        //    catch (Exception)
-        //    {
-
-        //        throw;
-        //    }
-           
-        //}
-        public IActionResult Index(string button)
+        }
+        
+        public IActionResult Index(string button, int pageNum = 1)
         {
             try
             {
@@ -66,28 +33,37 @@ namespace Dashboard.Controllers
                 {
                     TempData["buttonval"] = "ALL USERS";
                     dashBoardModels = LoadDashBoardData.GetDashbordByResult().Result.ToList();
-                    // var Data = dashBoardModels.Where(gen => gen.gender == button);
-                    return View(dashBoardModels);
+                    ViewModels.dashBoardModels = PaginationLists<DashBoardModel>.CreatePaginationAsync(LoadDashBoardData.dashBoardModels, pageNum, 5);
+                    ViewModels.pagination = PaginationLists<DashBoardModel>.CreatePaginationAsyncs(LoadDashBoardData.dashBoardModels, pageNum, 5);
+                    return View(ViewModels);
                 }
                 else if (button == "Male")
                 {
                     TempData["buttonval"] = "Male USERS";
                     dashBoardModels = LoadDashBoardData.GetDataByGenderMale().Result.ToList();
-                    return View(dashBoardModels);
+                    ViewModels.dashBoardModels = PaginationLists<DashBoardModel>.CreatePaginationAsync(LoadDashBoardData.MaledashBoardModels, pageNum, 5);
+                    ViewModels.pagination = PaginationLists<DashBoardModel>.CreatePaginationAsyncs(LoadDashBoardData.MaledashBoardModels, pageNum, 5);
+                    return View(ViewModels);
 
                 }
-                else if(button == "Female")
+                else if (button == "Female")
                 {
                     TempData["buttonval"] = "Female USERS";
                     dashBoardModels = LoadDashBoardData.GetDataByGenderFemale().Result.ToList();
-                    return View(dashBoardModels);
+                    ViewModels.dashBoardModels = PaginationLists<DashBoardModel>.CreatePaginationAsync(LoadDashBoardData.FemalehBoardModels, pageNum, 5);
+                    ViewModels.pagination = PaginationLists<DashBoardModel>.CreatePaginationAsyncs(LoadDashBoardData.FemalehBoardModels, pageNum, 5);
+                    return View(ViewModels);
 
                 }
                 TempData["buttonval"] = "ALL USERS";
-                dashBoardModels = LoadDashBoardData.GetDashbordByResult().Result.ToList();
-                return View(dashBoardModels);
-                // var Data = dashBoardModels.Where(gen => gen.gender == button);
-                //return RedirectToAction("Index", dashBoardModels);
+                LoadDashBoardData.GetDashbordByResult().Result.ToList();
+                var d = LoadDashBoardData.dashBoardModels;
+
+
+                ViewModels.dashBoardModels = PaginationLists<DashBoardModel>.CreatePaginationAsync(LoadDashBoardData.dashBoardModels, pageNum, 5);
+                ViewModels.pagination = PaginationLists<DashBoardModel>.CreatePaginationAsyncs(LoadDashBoardData.dashBoardModels, pageNum, 5);
+                return View(ViewModels);
+
             }
             catch (Exception)
             {

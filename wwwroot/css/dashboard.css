@@ -347,7 +347,7 @@ input:checked + .slider:before {
     position:inherit;
 }
 .over {
-    height:inherit;
+    height:400px;
     width:auto;
     position: inherit;
     overflow:auto;

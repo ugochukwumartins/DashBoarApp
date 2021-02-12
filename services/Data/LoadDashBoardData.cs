@@ -14,6 +14,13 @@ namespace Dashboard.services.Data
     }
     public class LoadDashBoardData 
     {
+        public static List<DashBoardModel> dashBoardModels { get; set; }
+        public static List<DashBoardModel> MaledashBoardModels { get; set; }
+        public static List<DashBoardModel> FemalehBoardModels { get; set; }
+        public LoadDashBoardData()
+        {
+
+        }
         public static async Task<List<DashBoardModel>> GetDashbordByResult()
         {
             try
@@ -21,7 +28,7 @@ namespace Dashboard.services.Data
                 var restClient = new DashBoardLoadServiceData<BaseResultModel<DashBoardModel>>();
                 var PendingLoan = await restClient.GetMyDataByNumbers();
 
-
+                dashBoardModels= PendingLoan?.Results; 
                 List<DashBoardModel> content = PendingLoan?.Results;
                 return content;
             }
@@ -35,7 +42,7 @@ namespace Dashboard.services.Data
                 var restClient = new DashBoardLoadServiceData<BaseResultModel<DashBoardModel>>();
                 var PendingLoan = await restClient.GetMyDataByGenderMale();
 
-
+                MaledashBoardModels = PendingLoan?.Results;
                 List<DashBoardModel> content = PendingLoan?.Results;
                 return content;
             }
@@ -48,7 +55,7 @@ namespace Dashboard.services.Data
                 var restClient = new DashBoardLoadServiceData<BaseResultModel<DashBoardModel>>();
                 var PendingLoan = await restClient.GetMyDataByGenderFemale();
 
-
+                FemalehBoardModels = PendingLoan?.Results;
                 List<DashBoardModel> content = PendingLoan?.Results;
                 return content;
             }

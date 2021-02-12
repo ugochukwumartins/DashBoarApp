@@ -9,7 +9,7 @@ namespace Dashboard.services
 {
     public class Dashboardservices<T>
     {
-       
+
         public async Task<T> GenericGet(string url)
         {
             try
@@ -18,7 +18,7 @@ namespace Dashboard.services
                 var handler = new HttpClientHandler();
                 var client = new HttpClient(handler);
                 // client.Timeout = TimeSpan.FromSeconds(12200);
-               // client.Timeout = TimeSpan.FromMinutes(120);
+                // client.Timeout = TimeSpan.FromMinutes(120);
                 var requestMessage = new HttpRequestMessage
                 {
                     Method = HttpMethod.Get,
@@ -46,15 +46,15 @@ namespace Dashboard.services
 
 
 
-            
+
             }
             catch (Exception e)
             {
                 var m = e.ToString();
                 //await Application.Current.MainPage.DisplayAlert("Server Error", m + ",There has been an server error. Please try later.", "OK");
-               // ErrorHelper.Track(e);
+                // ErrorHelper.Track(e);
                 throw;
             }
         }
-        }
+    }
 }

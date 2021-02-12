@@ -1,147 +1,154 @@
-﻿@model IEnumerable<Dashboard.Models.DashBoardModel>
+﻿@using Dashboard
+@model ViewModel
 @{
     ViewData["Title"] = "Home Page";
 }
-@section Stylesheets{ 
+@section Stylesheets{
     <link href="~/css/dashboard.css" rel="stylesheet" />
 }
 
 
 
-    
-        <div class="row no-gutters">
-            <div class="col no-gutters">
-                <div class="Leftside">
-                    <div> <span class="text-white" id="Design1">Hello,</span><span class="text-white" id="Design2">Emerald</span></div>
-                    <div>
-                        <span class="pdisign">Welcome to your dashboard, kindly sort through the user base</span>
+
+<div class="row no-gutters">
+    <div class="col no-gutters">
+        <div class="Leftside">
+            <div> <span class="text-white" id="Design1">Hello,</span><span class="text-white" id="Design2">Emerald</span></div>
+            <div>
+                <span class="pdisign">Welcome to your dashboard, kindly sort through the user base</span>
+            </div>
+            <div class="input-icons">
+
+                <i class="fas fa-search text-grey iconse" aria-hidden="true"></i>
+                <input type="text" placeholder="Find a user" class="searcchterm" />
+
+            </div>
+            <div><span id="user">Show Users</span>/></div>
+            <form>
+                <div class="btn-group icons outline">
+                    <div class="outline">
+                        <button class="btn0" asp-action="Index" asp-controller="Home" name="button" value="All"><i class="fas fa-users fa-3x icons"></i></button>
+                        <p class="btntext">All Users</p>
+                    </div>
+                    <div class="outline">
+                        <button class="btn1" name="button" value="Male" asp-action="Index" asp-controller="Home"><i class="fas fa-male fa-3x icons"></i></button>
+                        <p class="btntext">Male Users</p>
+                    </div>
+                    <div class="outline">
+                        <button class="btn2" name="button" value="Female" asp-action="Index" asp-controller="Home"><i class="fas fa-female fa-3x icons"></i></button>
+                        <p class="btntext">Female Users</p>
+                    </div>
+
+
+
+
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+    <div class="col no-gutters changedmargin">
+        <div class="Rightside rounded-lg overflow-hidden">
+            <div class="flows">
+
+
+                <div class="text1"> @TempData["buttonval"]</div>
+                <div class="text2">Filter by</div>
+                <div class="btn-group">
+                    <div class="input-icons">
+                        <i class="fas fa-search text-grey iconses" aria-hidden="true"></i>
+                        <input type="text" name="name" value="" placeholder="Find in list" id="Findinlist" />
                     </div>
                     <div class="input-icons">
-                        
-                                <i class="fas fa-search text-grey iconse" aria-hidden="true"></i>
-                         <input type="text"  placeholder="Find a user" class="searcchterm"/>
-                         
+                        <input type="text" name="name" value="" placeholder="Country" id="Country" />
+                        <i class="fa fa-caret-down dropd" aria-hidden="true"></i>
                     </div>
-                    <div><span id="user">Show Users</span>/></div>
-                    <form>
-                        <div class="btn-group icons outline">
-                            <div class="outline">
-                                <button class="btn0" asp-action="Index" asp-controller="Home" name="button" value="All"><i class="fas fa-users fa-3x icons"></i></button>
-                                <p class="btntext">All Users</p>
-                            </div>
-                            <div class="outline">
-                                <button class="btn1" name="button" value="Male" asp-action="Index" asp-controller="Home"><i class="fas fa-male fa-3x icons"></i></button>
-                                <p class="btntext">Male Users</p>
-                            </div>
-                            <div class="outline">
-                                <button class="btn2" name="button" value="Female" asp-action="Index" asp-controller="Home"><i class="fas fa-female fa-3x icons"></i></button>
-                                <p class="btntext">Female Users</p>
-                            </div>
+
+                    <div class="container">
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider"></span>
+
+                        </label>
+
+                    </div>
+                    <div class="country">Show </div>
+                    <div>country</div>
 
 
 
-
-                        </div>
-                    </form>
                 </div>
-              
             </div>
+            <div class="over">
 
-            <div class="col no-gutters changedmargin">
-                <div class="Rightside rounded-lg overflow-hidden">
-                    <div class="flows">
+                @if (Model != null)
+                {
+                    foreach (var item in Model.dashBoardModels)
+                    {
+                        <div class="card ml-5 mt-4  cards">
+                            <div class="row no-gutters">
+                                <div class="imgholder">
+                                    <img src=@item.picture.thumbnail alt="Alternate Text" />
+                                </div>
+                                <div class="detailsholde">
 
-                    
-                    <div class="text1"> @TempData["buttonval"]</div>
-                    <div class="text2">Filter by</div>
-                    <div class="btn-group">
-                        <div class="input-icons">
-                            <i class="fas fa-search text-grey iconses" aria-hidden="true"></i>
-                            <input type="text" name="name" value="" placeholder="Find in list" id="Findinlist" />
-                        </div>
-                        <div class="input-icons">
-                            <input type="text" name="name" value="" placeholder="Country" id="Country" />
-                            <i class="fa fa-caret-down dropd" aria-hidden="true"></i>
-                        </div>
-
-                        <div class="container">
-                            <label class="switch">
-                                <input type="checkbox">
-                                <span class="slider"></span>
-
-                            </label>
-
-                        </div>
-                        <div class="country">Show </div>
-                        <div>country</div>
-
-
-
-                    </div>
-                    </div>
-                    <div class="over">
-
-                        @if (Model != null)
-                        {
-                            foreach (var item in Model)
-                            {
-                                <div class="card ml-5 mt-4  cards">
-                                    <div class="row no-gutters">
-                                        <div class="imgholder">
-                                            <img src=@item.picture.thumbnail alt="Alternate Text" />
-                                        </div>
-                                        <div class="detailsholde">
-
-                                            <div class="nameholder">
-                                                <h6 class="card-title">@item.name.fullname </h6>
-                                            </div>
-                                            <div class="addressholder">
-                                                <p class="card-text">@item.location.street.fulladdress</p>
-                                            </div>
-
-
-
-
-                                            <div class="contactdetails">
-                                                <div class="iconholder">
-                                                    <i class="fas fa-envelope-square"></i>
-                                                </div>
-                                                <div class="details">
-
-                                                    <label id="email">@item.email</label>
-                                                </div>
-
-
-                                                <div class="iconholder">
-                                                    <i class="fas fa-phone-volume"></i>
-                                                </div>
-
-                                                <div class="details">
-                                                    <label id="phonN">@item.phone</label>
-                                                </div>
-                                                <div class="moredetails">
-                                                    <button href="#" class="moredetailsbutton"><i class="fa fa-arrow-right reficons reficon fa-1x"></i></button>
-                                                </div>
-
-                                            </div>
-
-
-
-
-
-
-
-
-                                        </div>
+                                    <div class="nameholder">
+                                        <h6 class="card-title">@item.name.fullname </h6>
+                                    </div>
+                                    <div class="addressholder">
+                                        <p class="card-text">@item.location.street.fulladdress</p>
                                     </div>
 
+
+
+
+                                    <div class="contactdetails">
+                                        <div class="iconholder">
+                                            <i class="fas fa-envelope-square"></i>
+                                        </div>
+                                        <div class="details">
+
+                                            <label id="email">@item.email</label>
+                                        </div>
+
+
+                                        <div class="iconholder">
+                                            <i class="fas fa-phone-volume"></i>
+                                        </div>
+
+                                        <div class="details">
+                                            <label id="phonN">@item.phone</label>
+                                        </div>
+                                        <div class="moredetails">
+                                            <button href="#" class="moredetailsbutton"><i class="fa fa-arrow-right reficons reficon fa-1x"></i></button>
+                                        </div>
+
+                                    </div>
+
+
+
+
+
+
+
+
                                 </div>
-                            }
+                            </div>
 
-                        }
+                        </div>
+                    }
 
-                    </div>
-                </div>
+                }
+                @{
+                    var Prevdisable = !Model.pagination.PreviousPage ? "disabled" : "";
+                    var Nextdisable = !Model.pagination.NextPage ? "disabled" : "";
+                }
+                <a asp-action="Index" asp-route-PageNumber="@(Model.pagination.PageIndex -1)" class="btn btn-default @Prevdisable">content</a>
+                <a asp-action="Index" asp-route-PageNumber="@(Model.pagination.PageIndex +1)" class="btn btn-default @Nextdisable">content</a>
             </div>
         </div>
-    
+
+    </div>
+</div>
+
